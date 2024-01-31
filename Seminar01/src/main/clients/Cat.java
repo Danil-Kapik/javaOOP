@@ -1,20 +1,26 @@
 package main.clients;
 
+import main.interfaces.Goable;
+
 import java.time.LocalDate;
 
-public class Cat extends Animal {
+public class Cat extends Animal implements Goable {
 
-    //Todo напомнить в чём разница в double
     Double discount;
 
-    public Cat(String nickName, Owner owner, LocalDate birthDate, Illness illness, Double discount) {
-        super(nickName, owner, birthDate, illness); //Todo сначала конструктор Супер-класса
+    public Cat(String nickname, Owner owner, LocalDate birthDate, Illness illness, Double discount) {
+        super(nickname, owner, birthDate, illness);
         this.discount = discount;
     }
 
     public Cat() {
         super();
         this.discount = 10D;
+    }
+
+    @Override
+    public String run(double speed) {
+        return String.format("%s бежит со скоростью %.2f", getNickName(), speed);
     }
 
     public Double getDiscount() {
@@ -25,13 +31,12 @@ public class Cat extends Animal {
         this.discount = discount;
     }
 
-    //Todo статикой пользоваться аккуратно ( пароли там не хранить :-) )
-    public static void meow(){
+    public void meow(){
         System.out.println("Мяяяу!");
     }
 
     @Override
     public String toString() {
-        return super.toString()+"Discount("+discount+")";
+        return String.format("%s, Discount: %.2f", super.toString(), discount);
     }
 }

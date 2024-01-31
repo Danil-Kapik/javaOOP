@@ -1,6 +1,9 @@
 package main;
 
 import main.clients.*;
+import main.clinic.VeterinaryClinic;
+import main.staff.Doctor;
+import main.staff.Nurse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,61 +12,58 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        Animal cat = new Animal("Солнышко", new Owner("Сергей Валерьевич"),
-                LocalDate.of(2021, 10, 05), new Illness("Лишай")); //Создаём экземпляр класса
+        Cat cat = new Cat("Солнышко", new Owner("Сергей Валерьевич"),
+                LocalDate.of(2021, 10, 5), new Illness("Лишай"), 30.0);
+        Dog dog = new Dog("Чапай", new Owner("Иван Петрович"),
+                LocalDate.of(2023, 11, 6), new Illness("Рваная рана левой ноги"));
+        Duck duck = new Duck("Утя", new Owner("Василий Индратович"),
+                LocalDate.of(2023, 2, 25), new Illness("Потерял крыло"));
 
-        System.out.println(cat.getOwner());
-        System.out.println(cat.getNickName());
-        System.out.println("Болезнь:" + cat.getIllness());
+        Doctor doctor = new Doctor("Петрович", LocalDate.of(2001, 11, 6));
+        Nurse nurse = new Nurse("Алиса", LocalDate.of(2009, 3, 23));
 
-        System.out.println(cat.getNickName());
+        VeterinaryClinic clinic = new VeterinaryClinic("ЖИВОТИНКА");
 
-        cat.setIllness(new Illness(null));
+        System.out.println(cat.run(34));
+        System.out.println(cat.run());
+        System.out.println();
 
-        System.out.println("Болезнь:" + cat.getIllness());
+        System.out.println(dog.swim(15));
+        System.out.println(dog.swim());
+        System.out.println(dog.run(45));
+        System.out.println(dog.run());
+        System.out.println();
 
+        System.out.println(duck.swim(2));
+        System.out.println(duck.swim());
+        System.out.println(duck.run(67));
+        System.out.println(duck.run());
+        System.out.println(duck.fly(72));
+        System.out.println(duck.fly());
 
-        Animal testAnimal = new Animal();
-        System.out.println(testAnimal.getNickName());
+        System.out.println("------------------------------------------------------------");
 
-        cat.lifeCycle();
+        System.out.println(doctor.getSpecialization());
+        doctor.performDuties();
+        doctor.diagnosePatient("Утя", "Стерся клюв");
+        doctor.givesInstructions("Алиса", "Чапай", "парацетамол");
+        System.out.println();
 
-        Animal catty = new Cat();
-        Dog goodBoy = new Dog();
+        nurse.performDuties();
+        nurse.assistDoctor("Петрович");
+        nurse.administerMedication("Солнышко", "глюкоза");
 
-        System.out.println(goodBoy.getType());
-        System.out.println(catty.getType());
+        System.out.println("------------------------------------------------------------");
 
-        System.out.println(catty);
-
-        Cat.meow();
-
-        List<Animal> animals = new ArrayList<Animal>();
-
-        animals.add(catty);
-        animals.add(goodBoy);
-        animals.add(cat);
-
-        int i = 0;
-        for (Animal animal : animals){
-            System.out.println(i + " "+ animal);
-            i++;
-        }
-
-//      +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        Duck duck = new Duck();
-        Elephant elephant = new Elephant();
-
-        duck.fly();
-        duck.toGo();
-        duck.swim();
-
-        elephant.swim();
-        elephant.toGo();
-        elephant.swim();
-
+        System.out.println(clinic.getName());
+        clinic.admitPatient(cat);
+        clinic.admitPatient(dog);
+        clinic.admitPatient(duck);
+        System.out.println(clinic.getPatients());
+        System.out.println();
+        clinic.getFlyAnimals();
+        clinic.getRunAnimals();
+        clinic.getSwimAnimals();
     }
 }
-
 

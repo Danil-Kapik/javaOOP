@@ -11,8 +11,8 @@ public class Animal {
     protected Illness illness;
     
 
-    public Animal(String nickName, Owner owner, LocalDate birthDate, Illness illness) {
-        this.nickName = nickName;
+    public Animal(String nickname, Owner owner, LocalDate birthDate, Illness illness) {
+        this.nickName = nickname;
         this.owner = owner;
         this.birthDate = birthDate;
         this.illness = illness;
@@ -22,53 +22,8 @@ public class Animal {
         this("Кличка", new Owner("Хозяин"), LocalDate.now(), new Illness("Болеет"));
     }
 
-
-    public void lifeCycle() {
-        wakeUp("12:00");
-        hunt();
-        eat();
-        sleep();
-    }
-
-    public void toGo() {
-        System.out.println(getClass().getSimpleName() + " Идет");
-    }
-
-    public void fly() {
-        System.out.println(getClass().getSimpleName() + " Летит");
-    }
-
-    public void swim() {
-        System.out.println(getClass().getSimpleName() + " Плывет");
-    }
-
-    private void wakeUp() {
-        wakeUp("12:00");
-    }
-
-    private void wakeUp(String time) {
-        System.out.println("Животное " + nickName + " проснулось в " + time);
-    }
-
     public String getType() {
         return getClass().getSimpleName();
-    }
-
-    private void hunt() {
-        System.out.println("Животное охотится!");
-    }
-
-    private void eat() {
-        System.out.println("Животное ест!");
-    }
-
-    private void sleep() {
-        System.out.println("Животное уснуло!");
-    }
-
-    @Override
-    public String toString() {
-        return String.format("nickName = %s, bd = %s, owner = %s, illness = %s", nickName, birthDate, owner, illness);
     }
 
     public String getNickName() {
@@ -89,5 +44,10 @@ public class Animal {
 
     public void setIllness(Illness illness) {
         this.illness = illness;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("nickName = %s, bd = %s, owner = %s, illness = %s", nickName, birthDate, owner, illness);
     }
 }
